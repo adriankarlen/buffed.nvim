@@ -22,8 +22,8 @@ end
 M.debuffs = function()
   local debuffs = {}
   for _, i in pairs(api.nvim_list_bufs()) do
-    local applied = vim.diagnostic.get(0, { severity = { min = constants.severity[options.debuff.severity] } })
-    if applied == not nil then
+    local diagnostic = vim.diagnostic.get(i, { severity = { min = constants.severity[options.debuff.severity] } })
+    if #diagnostic > 0 then
       table.insert(debuffs, i)
     end
   end
