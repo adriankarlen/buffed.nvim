@@ -1,6 +1,13 @@
 local M = {}
 
-M.options = {}
+M.options = {
+  buff = {
+    icon = "",
+  },
+  debuff = {
+    icon = "",
+  },
+}
 
 function M.extend_options(opts)
   M.options = vim.tbl_deep_extend("force", M.options, opts or {})
