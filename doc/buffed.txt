@@ -1,0 +1,158 @@
+==============================================================================
+------------------------------------------------------------------------------
+                                                                   *get_title()*
+                             `get_title`({bufname})
+Parameters ~
+{bufname} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                               *named_buffers()*
+                           `named_buffers`({buffers})
+a table of buffer file names by their ids
+Parameters ~
+{buffers} `(table<number>)`
+Return ~
+`(table<string>)`
+
+------------------------------------------------------------------------------
+                                                                 *M.get_buffs()*
+                                `M.get_buffs`()
+file names for all buffs
+Return ~
+`(table<string>)`
+
+------------------------------------------------------------------------------
+                                                               *M.get_debuffs()*
+                               `M.get_debuffs`()
+file names for all debuffs
+Return ~
+`(table<string>)`
+
+------------------------------------------------------------------------------
+                                                                     *M.setup()*
+                               `M.setup`({opts})
+Parameters ~
+{opts} buffed.Options
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                                     *M.options*
+                                  `M.options`
+Class ~
+{buffed.Options}
+Fields ~
+{buff} Buff
+{debuff} Debuff
+
+------------------------------------------------------------------------------
+                                                            *M.extend_options()*
+                           `M.extend_options`({opts})
+Parameters ~
+{opts} buffed.Options
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                                    *M.severity*
+                                  `M.severity`
+Class ~
+{Buffed.severity}
+Fields ~
+{ERROR} `(integer)`
+{WARN} `(integer)`
+{INFO} `(integer)`
+{HINT} `(integer)`
+
+------------------------------------------------------------------------------
+                                                                  *M.highlights*
+                                 `M.highlights`
+Class ~
+{Buffed.highlights}
+Fields ~
+{TabLine} `(string)`
+{TabLineFill} `(string)`
+{TabLineSel} `(string)`
+{BuffedBuff} `(string)`
+{BuffedDebuff} `(string)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                          *H.create_hl_groups()*
+                             `H.create_hl_groups`()
+custom highlight groups
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                                     *M.buffs()*
+                                  `M.buffs`()
+table of buffer id's that is modified
+Return ~
+`(table<number>)`
+
+------------------------------------------------------------------------------
+                                                                   *M.debuffs()*
+                                 `M.debuffs`()
+table of buffer id's that are open and has diagnostic of configured level
+Return ~
+`(table<number>)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                                 *H._basename()*
+                               `H._basename`({s})
+basename for a filepath
+Parameters ~
+{s} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                               *H._cwd_filename*
+                               `H._cwd_filename`
+filepath with cwd as root for a filepath
+Parameters ~
+{s} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                                 *H._colorize()*
+                            `H._colorize`({s}, {hl})
+hl to a string
+Parameters ~
+{s} `(string)`
+{hl} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                                   *H._spacer()*
+                                `H._spacer`({n})
+spacing with hl
+Parameters ~
+{n} `(number)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                                    *H._align()*
+                                  `H._align`()
+alignment string
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                                 *H._truncate()*
+                                `H._truncate`()
+end
+Return ~
+`(string)`
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
