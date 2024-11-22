@@ -11,9 +11,9 @@ M.options = {
   },
   ---@class Debuff
   ---@field icon string
-  ---@field severity string
+  ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff 
   debuff = {
-    icon = "",
+    icon = "󰈸",
     severity = "ERROR",
   },
 }
