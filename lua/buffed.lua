@@ -17,24 +17,52 @@ local get_title = function(bufname)
   return utils._colorize(filename, constants.highlights.TabLine)
 end
 
+---get a table of buffer file names by their ids
+---@param buffers table<number>
+---@return table<string>
+local named_buffers = function(buffers)
+  local named = {}
+  for _, buffer in ipairs(buffers) do
+    local filename = utils._cwd_filename(fn.bufname(buffer))
+    table.insert(named, filename)
+  end
+  return named
+end
+
+---get file names for all buffs
+---@return table<string>
+M.get_buffs = function()
+  local buffs = status.buffs()
+  return named_buffers(buffs)
+end
+
+---get file names for all debuffs
+---@return table<string>
+M.get_debuffs = function()
+  local debuffs = status.debuffs()
+  return named_buffers(debuffs)
+end
+
 M.tabline = function()
   local s = ""
-  local buffs = status.buffs()
-  local debuffs = status.debuffs()
+  local buffs = M.get_buffs()
+  local debuffs = M.get_debuffs()
 
-  for _, buff in pairs(buffs) do
-    local buff_title = get_title(fn.bufname(buff))
+  for _, filename in pairs(buffs) do
+    local buff = get_title(filename)
     local buff_icon = utils._colorize(options.buff.icon, constants.highlights.BuffedBuff)
-    s = s .. buff_title .. utils._spacer(1) .. buff_icon .. utils._spacer(2)
+    s = s .. buff .. buff_icon .. utils._spacer(2)
   end
 
   s = s .. utils._align()
 
-  for _, debuff in pairs(debuffs) do
-    local debuff_title = get_title(fn.bufname(debuff))
+  for _, filename in pairs(debuffs) do
+    local debuff = get_title(filename)
     local debuff_icon = utils._colorize(options.debuff.icon, constants.highlights.BuffedDebuff)
-    s = s .. debuff_title .. utils._spacer(1) .. debuff_icon .. utils._spacer(2)
+    s = s .. debuff .. debuff_icon .. utils._spacer(2)
   end
+
+  s = s .. utils._truncate()
   return s
 end
 
