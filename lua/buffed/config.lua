@@ -1,9 +1,11 @@
 local M = {}
 
 ---@class buffed.Options
+---@field file_icons boolean
 ---@field buff Buff
 ---@field debuff Debuff
 M.options = {
+  file_icons = true,
   ---@class Buff
   ---@field icon string
   buff = {

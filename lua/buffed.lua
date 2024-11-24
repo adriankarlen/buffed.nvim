@@ -8,13 +8,13 @@ local M = {}
 
 ---get file names for all buffs
 ---@return table<string>
-M.get_buffs = function()
+M.buffs = function()
   return status.named "buff"
 end
 
 ---get file names for all debuffs
 ---@return table<string>
-M.get_debuffs = function()
+M.debuffs = function()
   return status.named "debuff"
 end
 

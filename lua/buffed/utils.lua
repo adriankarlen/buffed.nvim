@@ -10,7 +10,7 @@ end
 ---get filepath with cwd as root for a filepath
 ---@param s string
 ---@return string
-H._cwd_filename = function (s)
+H._cwd_filename = function(s)
   return vim.fn.fnamemodify(s, ":~:.:h") .. "/" .. vim.fn.fnamemodify(s, ":t")
 end
 
@@ -27,7 +27,7 @@ end
 ---@return string
 H._spacer = function(n)
   local spaces = string.rep(" ", n)
-  return  H._colorize(spaces, "TabLineSep")
+  return H._colorize(spaces, "TabLineSep")
 end
 
 ---adds alignment string

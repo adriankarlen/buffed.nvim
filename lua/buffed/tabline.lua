@@ -4,11 +4,33 @@ local status = require "buffed.status"
 local options = require("buffed.config").options
 local M = {}
 
+---comment
+---@param filename string
+---@return string?
+---@return string?
+local get_icon = function(filename)
+  if not options.file_icons then
+    return
+  end
+  local get = function()
+    return require("mini.icons").get("file", filename)
+  end
+  local ok, icon, hl = pcall(get)
+  if ok then
+    return icon, hl
+  end
+end
+
 ---@param bufname string
 ---@return string
 local get_title = function(bufname)
   local filename = utils._basename(bufname)
-  return utils._colorize(filename, constants.highlights.TabLine)
+  local icon, hl = get_icon(filename)
+  local fileicon = ""
+  if icon and hl then
+    fileicon = utils._colorize(icon, hl) .. utils._spacer(0)
+  end
+  return fileicon .. utils._colorize(filename, constants.highlights.TabLine)
 end
 
 M.show = function()
