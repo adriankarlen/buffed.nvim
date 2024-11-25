@@ -9,6 +9,7 @@ buffer info you care about
 ```lua
 {
   "adriankarlen/buffed.nvim",
+  dependencies = { "echasnovski/mini.icons" },
   opts = {}
 }
 ```
