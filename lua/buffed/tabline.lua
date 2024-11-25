@@ -17,7 +17,7 @@ local get_icon = function(filename)
   end
   local ok, icon, hl = pcall(get)
   if ok then
-    return icon, hl
+    return icon, "Buffed" .. hl
   end
 end
 

@@ -18,12 +18,30 @@ M.severity = {
 ---@field TabLineSel string
 ---@field BuffedBuff string
 ---@field BuffedDebuff string
+---@field BuffedMiniIconsAzure string
+---@field BuffedMiniIconsBlue string
+---@field BuffedMiniIconsCyan string
+---@field BuffedMiniIconsGreen string
+---@field BuffedMiniIconsGrey string
+---@field BuffedMiniIconsOrange string
+---@field BuffedMiniIconsPurple string
+---@field BuffedMiniIconsRed string
+---@field BuffedMiniIconsYellow string
 M.highlights = {
   TabLine = "TabLine",
   TabLineFill = "TabLineFill",
   TabLineSel = "TabLineSel",
   BuffedBuff = "BuffedBuff",
   BuffedDebuff = "BuffedDebuff",
+  BuffedMiniIconsAzure = "BuffedMiniIconsAzure",
+  BuffedMiniIconsBlue = "BuffedMiniIconsBlue",
+  BuffedMiniIconsCyan = "BuffedMiniIconsCyan",
+  BuffedMiniIconsGreen = "BuffedMiniIconsGreen",
+  BuffedMiniIconsGrey = "BuffedMiniIconsGrey",
+  BuffedMiniIconsOrange = "BuffedMiniIconsOrange",
+  BuffedMiniIconsPurple = "BuffedMiniIconsPurple",
+  BuffedMiniIconsRed = "BuffedMiniIconsRed",
+  BuffedMiniIconsYellow = "BuffedMiniIconsYellow",
 }
 
 return M
