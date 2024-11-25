@@ -1,3 +1,4 @@
+---@class buffed.utils
 local H = {}
 
 ---get basename for a filepath

@@ -2,9 +2,11 @@ local utils = require "buffed.utils"
 local constants = require "buffed.constants"
 local status = require "buffed.status"
 local options = require("buffed.config").options
+
+---@class buffed.tabline
 local M = {}
 
----comment
+---get icon string and hl group
 ---@param filename string
 ---@return string?
 ---@return string?
@@ -21,6 +23,7 @@ local get_icon = function(filename)
   end
 end
 
+---get buffer title
 ---@param bufname string
 ---@return string
 local get_title = function(bufname)
@@ -33,6 +36,8 @@ local get_title = function(bufname)
   return fileicon .. utils._colorize(filename, constants.highlights.TabLine)
 end
 
+---generate the tabline
+---@return string
 M.show = function()
   local s = ""
   local buffs = status.named "buff"

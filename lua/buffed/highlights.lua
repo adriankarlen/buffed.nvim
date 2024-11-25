@@ -1,12 +1,18 @@
 local constants = require "buffed.constants"
 local api = vim.api
 local fn = vim.fn
+
+---@class buffed.highlights
 local H = {}
 
+---@param group string
+---@param attr string
+---@return string
 local function get_color(group, attr)
   return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
 end
 
+---@param bg string
 local set_icon_colors = function(bg)
   local icon_colors = {
     [constants.highlights.BuffedMiniIconsAzure] = { fg = get_color("MiniIconsAzure", "fg#"), bg = bg },
@@ -25,6 +31,7 @@ local set_icon_colors = function(bg)
 end
 
 ---create custom highlight groups
+---@return nil
 H.create_hl_groups = function()
   local bg = get_color("TabLine", "bg#")
   set_icon_colors(bg)

@@ -1,6 +1,7 @@
+---@class buffed.constants
 local M = {}
 
----@class Buffed.severity
+---@class buffed.severity
 ---@field ERROR integer
 ---@field WARN integer
 ---@field INFO integer
@@ -12,7 +13,7 @@ M.severity = {
   HINT = vim.diagnostic.severity.HINT,
 }
 
----@class Buffed.highlights
+---@class buffed.highlights
 ---@field TabLine string
 ---@field TabLineFill string
 ---@field TabLineSel string

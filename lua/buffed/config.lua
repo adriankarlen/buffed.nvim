@@ -1,6 +1,7 @@
+---@class buffed.config
 local M = {}
 
----@class buffed.Options
+---@class buffed.options
 ---@field file_icons boolean
 ---@field buff Buff
 ---@field debuff Debuff
@@ -20,7 +21,7 @@ M.options = {
   },
 }
 
----@param opts buffed.Options
+---@param opts buffed.options
 function M.extend_options(opts)
   M.options = vim.tbl_deep_extend("force", M.options, opts or {})
 end

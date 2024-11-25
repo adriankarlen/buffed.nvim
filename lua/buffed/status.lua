@@ -4,6 +4,7 @@ local constants = require "buffed.constants"
 local api = vim.api
 local fn = vim.fn
 
+---@class buffed.status
 local M = {}
 
 ---get a table of buffer file names by their ids
