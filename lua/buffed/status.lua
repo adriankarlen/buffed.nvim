@@ -14,7 +14,11 @@ local M = {}
 local named_buffers = function(buffers)
   local named = {}
   for _, buffer in ipairs(buffers) do
-    local filename = utils._cwd_filename(fn.bufname(buffer))
+    local path = fn.bufname(buffer)
+    local filename = "[No Name]"
+    if #path > 0 then
+      filename = utils._cwd_filename(path)
+    end
     table.insert(named, filename)
   end
   return named
