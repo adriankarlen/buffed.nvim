@@ -11,11 +11,11 @@ M.options = {
   ---@class Buff
   ---@field icon string
   buff = {
-    icon = "",
+    icon = "",
   },
   ---@class Debuff
   ---@field icon string
-  ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff 
+  ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff
   debuff = {
     icon = "󰈸",
     severity = "ERROR",
