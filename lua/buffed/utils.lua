@@ -1,3 +1,4 @@
+---@private
 ---@class buffed.utils
 local H = {}
 

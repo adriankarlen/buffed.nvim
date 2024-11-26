@@ -2,8 +2,9 @@ local constants = require "buffed.constants"
 local api = vim.api
 local fn = vim.fn
 
+---@private
 ---@class buffed.highlights
-local H = {}
+local M = {}
 
 ---@param group string
 ---@param attr string
@@ -32,11 +33,11 @@ end
 
 ---create custom highlight groups
 ---@return nil
-H.create_hl_groups = function()
+M.create_hl_groups = function()
   local bg = get_color("TabLine", "bg#")
   set_icon_colors(bg)
   api.nvim_set_hl(0, constants.highlights.BuffedBuff, { fg = get_color("DiagnosticWarn", "fg#"), bg = bg })
   api.nvim_set_hl(0, constants.highlights.BuffedDebuff, { fg = get_color("DiagnosticError", "fg#"), bg = bg })
 end
 
-return H
+return M

@@ -3,6 +3,7 @@ local constants = require "buffed.constants"
 local status = require "buffed.status"
 local options = require("buffed.config").options
 
+---@private
 ---@class buffed.tabline
 local M = {}
 

@@ -1,3 +1,4 @@
+---@private
 ---@class buffed.config
 local M = {}
 

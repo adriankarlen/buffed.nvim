@@ -4,6 +4,7 @@ local constants = require "buffed.constants"
 local api = vim.api
 local fn = vim.fn
 
+---@private
 ---@class buffed.status
 local M = {}
 
@@ -21,7 +22,7 @@ end
 
 ---returns table of buffer id's that is modified
 ---@return table<number>
-M.buffs = function()
+local buffs = function()
   local buffs = {}
   for _, i in pairs(api.nvim_list_bufs()) do
     if fn.getbufvar(i, "&mod") == 1 then
@@ -33,7 +34,7 @@ end
 
 ---returns table of buffer id's that are open and has diagnostic of configured level
 ---@return table<number>
-M.debuffs = function()
+local debuffs = function()
   local debuffs = {}
   for _, i in pairs(api.nvim_list_bufs()) do
     local diagnostic = vim.diagnostic.get(i, { severity = { min = constants.severity[options.debuff.severity] } })
@@ -49,9 +50,9 @@ end
 ---@return table<string>
 M.named = function(type)
   if type == "buff" then
-    return named_buffers(M.buffs())
+    return named_buffers(buffs())
   elseif type == "debuff" then
-    return named_buffers(M.debuffs())
+    return named_buffers(debuffs())
   end
   return {}
 end

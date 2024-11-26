@@ -1,31 +1,20 @@
 ==============================================================================
 ------------------------------------------------------------------------------
-                                                                   *get_title()*
-                             `get_title`({bufname})
-Parameters ~
-{bufname} `(string)`
-Return ~
-`(string)`
+                                                                             *M*
+                                      `M`
+Class ~
+{buffed}
 
 ------------------------------------------------------------------------------
-                                                               *named_buffers()*
-                           `named_buffers`({buffers})
-a table of buffer file names by their ids
-Parameters ~
-{buffers} `(table<number>)`
-Return ~
-`(table<string>)`
-
-------------------------------------------------------------------------------
-                                                                 *M.get_buffs()*
-                                `M.get_buffs`()
+                                                                     *M.buffs()*
+                                  `M.buffs`()
 file names for all buffs
 Return ~
 `(table<string>)`
 
 ------------------------------------------------------------------------------
-                                                               *M.get_debuffs()*
-                               `M.get_debuffs`()
+                                                                   *M.debuffs()*
+                                 `M.debuffs`()
 file names for all debuffs
 Return ~
 `(table<string>)`
@@ -34,7 +23,7 @@ Return ~
                                                                      *M.setup()*
                                `M.setup`({opts})
 Parameters ~
-{opts} buffed.Options
+{opts} buffed.options
 
 
 ==============================================================================
@@ -42,8 +31,9 @@ Parameters ~
                                                                      *M.options*
                                   `M.options`
 Class ~
-{buffed.Options}
+{buffed.options}
 Fields ~
+{file_icons} `(boolean)`
 {buff} Buff
 {debuff} Debuff
 
@@ -51,7 +41,7 @@ Fields ~
                                                             *M.extend_options()*
                            `M.extend_options`({opts})
 Parameters ~
-{opts} buffed.Options
+{opts} buffed.options
 
 
 ==============================================================================
@@ -59,7 +49,7 @@ Parameters ~
                                                                     *M.severity*
                                   `M.severity`
 Class ~
-{Buffed.severity}
+{buffed.severity}
 Fields ~
 {ERROR} `(integer)`
 {WARN} `(integer)`
@@ -70,36 +60,109 @@ Fields ~
                                                                   *M.highlights*
                                  `M.highlights`
 Class ~
-{Buffed.highlights}
+{buffed.highlights}
 Fields ~
 {TabLine} `(string)`
 {TabLineFill} `(string)`
 {TabLineSel} `(string)`
 {BuffedBuff} `(string)`
 {BuffedDebuff} `(string)`
+{BuffedMiniIconsAzure} `(string)`
+{BuffedMiniIconsBlue} `(string)`
+{BuffedMiniIconsCyan} `(string)`
+{BuffedMiniIconsGreen} `(string)`
+{BuffedMiniIconsGrey} `(string)`
+{BuffedMiniIconsOrange} `(string)`
+{BuffedMiniIconsPurple} `(string)`
+{BuffedMiniIconsRed} `(string)`
+{BuffedMiniIconsYellow} `(string)`
 
 
 ==============================================================================
 ------------------------------------------------------------------------------
-                                                          *H.create_hl_groups()*
-                             `H.create_hl_groups`()
+                                                                   *get_color()*
+                          `get_color`({group}, {attr})
+Parameters ~
+{group} `(string)`
+{attr} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                             *set_icon_colors()*
+                            `set_icon_colors`({bg})
+Parameters ~
+{bg} `(string)`
+
+------------------------------------------------------------------------------
+                                                          *M.create_hl_groups()*
+                             `M.create_hl_groups`()
 custom highlight groups
+Return ~
+`(nil)`
 
 
 ==============================================================================
 ------------------------------------------------------------------------------
-                                                                     *M.buffs()*
-                                  `M.buffs`()
+                                                               *named_buffers()*
+                           `named_buffers`({buffers})
+a table of buffer file names by their ids
+Parameters ~
+{buffers} `(table<number>)`
+Return ~
+`(table<string>)`
+
+------------------------------------------------------------------------------
+                                                                       *buffs()*
+                                   `buffs`()
 table of buffer id's that is modified
 Return ~
 `(table<number>)`
 
 ------------------------------------------------------------------------------
-                                                                   *M.debuffs()*
-                                 `M.debuffs`()
+                                                                     *debuffs()*
+                                  `debuffs`()
 table of buffer id's that are open and has diagnostic of configured level
 Return ~
 `(table<number>)`
+
+------------------------------------------------------------------------------
+                                                                     *M.named()*
+                               `M.named`({type})
+buffer names for either debuffs or buffs
+Parameters ~
+{type} "buff" | "debuff"
+Return ~
+`(table<string>)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                                    *get_icon()*
+                             `get_icon`({filename})
+icon string and hl group
+Parameters ~
+{filename} `(string)`
+Return ~
+`(string)` `(optional)`
+Return ~
+`(string)` `(optional)`
+
+------------------------------------------------------------------------------
+                                                                   *get_title()*
+                             `get_title`({bufname})
+buffer title
+Parameters ~
+{bufname} `(string)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                                      *M.show()*
+                                   `M.show`()
+the tabline
+Return ~
+`(string)`
 
 
 ==============================================================================
@@ -113,8 +176,8 @@ Return ~
 `(string)`
 
 ------------------------------------------------------------------------------
-                                                               *H._cwd_filename*
-                               `H._cwd_filename`
+                                                             *H._cwd_filename()*
+                             `H._cwd_filename`({s})
 filepath with cwd as root for a filepath
 Parameters ~
 {s} `(string)`

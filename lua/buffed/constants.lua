@@ -1,3 +1,4 @@
+---@private
 ---@class buffed.constants
 local M = {}
 
