@@ -39,14 +39,18 @@ Code.
 {
   file_icons = true,
   ---@class Buff
+  ---@field enabled boolean
   ---@field icon string
   buff = {
+    enabled = true,
     icon = "",
   },
   ---@class Debuff
+  ---@field enabled boolean
   ---@field icon string
   ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff
   debuff = {
+    enabled = true,
     icon = "󰈸",
     severity = "ERROR",
   },

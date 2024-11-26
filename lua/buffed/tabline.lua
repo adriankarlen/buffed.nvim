@@ -43,10 +43,17 @@ end
 ---@return string
 M.show = function()
   local s = ""
-  local buffs = status.named "buff"
-  local debuffs = status.named "debuff"
+  local buffs = {}
+  local debuffs = {}
 
-  if #buffs + #buffs <= 0 then
+  if options.buff.enabled then
+    buffs = status.named "buff"
+  end
+  if options.debuff.enabled then
+    debuffs = status.named "debuff"
+  end
+
+  if #buffs + #debuffs < 1 then
     opt.showtabline = 0
     return ""
   end
