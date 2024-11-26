@@ -1,3 +1,5 @@
+require "buffed.autocmds"
+
 local config = require "buffed.config"
 local status = require "buffed.status"
 local highlights = require "buffed.highlights"

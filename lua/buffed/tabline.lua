@@ -3,6 +3,8 @@ local constants = require "buffed.constants"
 local status = require "buffed.status"
 local options = require("buffed.config").options
 
+local opt = vim.opt
+
 ---@private
 ---@class buffed.tabline
 local M = {}
@@ -43,6 +45,11 @@ M.show = function()
   local s = ""
   local buffs = status.named "buff"
   local debuffs = status.named "debuff"
+
+  if #buffs + #buffs <= 0 then
+    opt.showtabline = 0
+    return ""
+  end
 
   for _, filename in pairs(buffs) do
     local buff = get_title(filename)

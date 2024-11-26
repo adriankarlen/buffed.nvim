@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd({ "VimEnter", "BufAdd" }, {
+autocmd({ "BufWrite", "BufAdd", "InsertEnter", "InsertLeave" }, {
   callback = function()
-    require("cokeline.augroups").toggle()
+    vim.opt.showtabline = 2
   end,
 })
