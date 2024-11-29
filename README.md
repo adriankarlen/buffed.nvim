@@ -25,7 +25,7 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 ```lua
 {
   "adriankarlen/buffed.nvim",
-  dependencies = { "echasnovski/mini.icons" },
+  dependencies = { "echasnovski/mini.icons" }, -- optional: required for file icons
   opts = {}
 }
 ```
