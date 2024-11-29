@@ -63,7 +63,7 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 
 </details>
 
-### 🏗️ Api
+## 🏗️ Api
 
 In addition to the tabline buffed provides some useful functions to help
 managing the buffs and debuffs.
@@ -85,23 +85,23 @@ vim.keymap.set("n", "<leader>fb", function()
 end, { desc = "pick buffs" })
 ```
 
-#### :telescope: Pickers
+## :telescope: Pickers
 
-##### :telescope: Telescope
+### :telescope: Telescope
 
 ```lua
   vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").telescope_buff() end, desc = "telescope - pick buffs")
   vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").telescope_debuff() end, desc = "telescope - pick debuffs")
 ```
 
-##### :telescope: fzf-lua
+### :telescope: fzf-lua
 
 ```lua
   vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").fzf_buff() end, desc = "fzf-lua - pick buffs")
   vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").fzf_debuff() end, desc = "fzf-lua - pick debuffs")
 ```
 
-### :art: Highlights
+## :art: Highlights
 
 <details>
 <summary>Highlight groups</summary>
