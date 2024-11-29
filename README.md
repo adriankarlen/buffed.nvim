@@ -59,6 +59,46 @@ Code.
 
 </details>
 
+### Api
+
+In addition to the tabline buffed provides some useful functions to help
+managing the buffs and debuffs.
+
+#### General
+
+The following two functions can be used to integrate the buffs/debuffs you self.
+
+```lua
+---returns a table of paths to the buffs
+require("buffed").buffs()
+
+---returns a table of paths to the debuffs
+require("buffed").debuffs()
+
+-- example usage as a picker using vim.ui.select
+vim.keymap.set("n", "<leader>fb", function()
+  vim.ui.select(require("buffed").buffs(), { prompt = "select buff" }, function(selection)
+    vim.cmd.edit(selection)
+  end)
+end, { desc = "pick buffs" })
+```
+
+#### :telescope: Pickers
+
+##### :telescope: Telescope
+
+```lua
+  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").telescope_buff() end, desc = "telescope - pick buffs")
+  vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").telescope_debuff() end, desc = "telescope - pick debuffs")
+```
+
+##### :telescope: fzf-lua
+
+```lua
+  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").fzf_buff() end, desc = "fzf-lua - pick buffs")
+  vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").fzf_debuff() end, desc = "fzf-lua - pick debuffs")
+```
+
 ### :art: Highlights
 
 <details>
