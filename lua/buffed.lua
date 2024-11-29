@@ -1,5 +1,3 @@
-require "buffed.autocmds"
-
 local config = require "buffed.config"
 local status = require "buffed.status"
 local highlights = require "buffed.highlights"
@@ -23,6 +21,9 @@ end
 
 ---@param opts buffed.options
 M.setup = function(opts)
+  if config.options.dynamic_tabline then
+    require "buffed.autocmds"
+  end
   config.extend_options(opts)
   highlights.create_hl_groups()
   opt.showtabline = 2

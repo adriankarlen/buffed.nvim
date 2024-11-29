@@ -53,7 +53,7 @@ M.show = function()
     debuffs = status.named "debuff"
   end
 
-  if #buffs + #debuffs < 1 then
+  if options.dynamic_tabline and #buffs + #debuffs < 1 then
     opt.showtabline = 0
     return ""
   end

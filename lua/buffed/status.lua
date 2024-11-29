@@ -24,11 +24,18 @@ local named_buffers = function(buffers)
   return named
 end
 
+local get_buffers = function()
+  local current_buf = api.nvim_get_current_buf()
+  return vim.tbl_filter(function(bufnr)
+    return api.nvim_buf_is_loaded(bufnr) and (not options.ignore_current or bufnr ~= current_buf)
+  end, api.nvim_list_bufs())
+end
+
 ---returns table of buffer id's that is modified
 ---@return table<number>
 local buffs = function()
   local buffs = {}
-  for _, i in pairs(api.nvim_list_bufs()) do
+  for _, i in pairs(get_buffers()) do
     if fn.getbufvar(i, "&mod") == 1 then
       table.insert(buffs, i)
     end
@@ -40,7 +47,7 @@ end
 ---@return table<number>
 local debuffs = function()
   local debuffs = {}
-  for _, i in pairs(api.nvim_list_bufs()) do
+  for _, i in pairs(get_buffers()) do
     local diagnostic = vim.diagnostic.get(i, { severity = { min = constants.severity[options.debuff.severity] } })
     if #diagnostic > 0 then
       table.insert(debuffs, i)
