@@ -1,3 +1,5 @@
+local fn = vim.fn
+
 ---@private
 ---@class buffed.utils
 local H = {}
@@ -6,14 +8,14 @@ local H = {}
 ---@param s string
 ---@return string
 H._basename = function(s)
-  return vim.fn.fnamemodify(s, ":t")
+  return fn.fnamemodify(s, ":t")
 end
 
 ---get filepath with cwd as root for a filepath
 ---@param s string
 ---@return string
 H._cwd_filename = function(s)
-  return vim.fn.fnamemodify(s, ":~:.:h") .. "/" .. vim.fn.fnamemodify(s, ":t")
+  return fn.fnamemodify(s, ":~:.:h") .. "/" .. fn.fnamemodify(s, ":t")
 end
 
 ---apply hl to a string
