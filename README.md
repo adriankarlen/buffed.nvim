@@ -14,6 +14,10 @@ a minimal way while enforcing a navigational approach to fuzzy find the file you
 are looking for. Thus making you loose that nasty buffer cycling habit from VS
 Code.
 
+## :movie_camera: Demo
+
+https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
+
 ## :package: Installation
 
 ### :zzz: lazy.nvim
