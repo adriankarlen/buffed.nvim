@@ -63,12 +63,10 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 
 </details>
 
-### Api
+### 🏗️ Api
 
 In addition to the tabline buffed provides some useful functions to help
 managing the buffs and debuffs.
-
-#### General
 
 The following two functions can be used to integrate the buffs/debuffs you self.
 
