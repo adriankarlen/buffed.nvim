@@ -37,11 +37,15 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 
 ```lua
 ---@class buffed.options
+---@field dynamic_tabline boolean: hides tabline when no buffer info available
 ---@field file_icons boolean
+---@field ignore_current boolean: don't show tabline info for current open buffer
 ---@field buff Buff
 ---@field debuff Debuff
-{
+M.options = {
+  dynamic_tabline = true,
   file_icons = true,
+  ignore_current = true,
   ---@class Buff
   ---@field enabled boolean
   ---@field icon string
