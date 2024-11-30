@@ -32,8 +32,7 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 
 ### :hammer_and_wrench: Configuration
 
-<details>
-<summary>Defaults</summary>
+#### Defaults
 
 ```lua
 ---@class buffed.options
@@ -64,8 +63,6 @@ M.options = {
   },
 }
 ```
-
-</details>
 
 ## 🏗️ Api
 
