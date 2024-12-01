@@ -7,16 +7,15 @@ local opt = vim.opt
 ---@class buffed
 local M = {}
 
----get file names for all buffs
----@return table<string>
-M.buffs = function()
-  return status.named "buff"
-end
 
----get file names for all debuffs
----@return table<string>
-M.debuffs = function()
-  return status.named "debuff"
+---get files of named filter
+---@return table<string>?
+M.get = function(name)
+  local filter = config.options.filters[name]
+  if filter then
+    return status.named(filter.fun)
+  end
+  return nil
 end
 
 ---@param opts buffed.options

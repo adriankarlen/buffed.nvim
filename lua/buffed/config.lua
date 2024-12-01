@@ -6,28 +6,16 @@ local M = {}
 ---@field dynamic_tabline boolean: hides tabline when no buffer info available
 ---@field file_icons boolean
 ---@field ignore_current boolean: don't show tabline info for current open buffer
----@field buff Buff
----@field debuff Debuff
+---@class buffed.filter
+---@field icon string?
+---@field hl string?
+---@field fun function
+---@field filters table<string, buffed.filter>
 M.options = {
   dynamic_tabline = true,
   file_icons = true,
   ignore_current = true,
-  ---@class Buff
-  ---@field enabled boolean
-  ---@field icon string
-  buff = {
-    enabled = true,
-    icon = "",
-  },
-  ---@class Debuff
-  ---@field enabled boolean
-  ---@field icon string
-  ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff
-  debuff = {
-    enabled = true,
-    icon = "󰈸",
-    severity = "ERROR",
-  },
+  filters = {},
 }
 
 ---@param opts buffed.options
