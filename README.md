@@ -1,13 +1,9 @@
 # :muscle: `buffed.nvim`
 
 `buffed.nvim` is a neovim tabline plugin that focuses on giving you information
-about your open buffers without bloat.
-
-The plugin currently divides open buffers in three groups
-
-1. Buffs - unsaved buffers
-2. Debuffs - open buffers with diagnostics of configured level
-3. Noice - open buffers that don't say anything of note
+about your open buffers without bloat. This is done by enabling the user to
+create buffer groups via user defined filters that contain the information the
+user is interested in from the other buffers.
 
 The main goal of this plugin is to provide information regarding open buffers in
 a minimal way while enforcing a navigational approach to fuzzy find the file you
