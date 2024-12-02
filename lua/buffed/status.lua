@@ -1,4 +1,4 @@
-local options = require("buffed.config").options
+local config = require("buffed.config")
 local utils = require "buffed.utils"
 local api = vim.api
 local fn = vim.fn
@@ -12,7 +12,7 @@ local M = {}
 local get_buffers = function()
   local current_buf = api.nvim_get_current_buf()
   return vim.tbl_filter(function(bufnr)
-    return api.nvim_buf_is_loaded(bufnr) and (not options.ignore_current or bufnr ~= current_buf)
+    return api.nvim_buf_is_loaded(bufnr) and (not config.options.ignore_current or bufnr ~= current_buf)
   end, api.nvim_list_bufs())
 end
 
