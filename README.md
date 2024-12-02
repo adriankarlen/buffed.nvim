@@ -52,12 +52,23 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 }
 ```
 
-<details>
-<select>Old opinionated defaults converted to new opts structure</select>
+#### Filters
+
+This plugin does nothing without any configured filter. I've added some examples
+below.
+
+A filter can be anything that returns true or false, it applied on a per entry
+level of `vim.api.nvim_list_bufs`. The plugin does some pre filtering to remove
+unloaded buffers before applying your filter.
+
+The filter function has one parameter which is the bufnr.
+
+##### Example filters
 
 ```lua
 opts = {
   filters = {
+    -- create a group of buffers that are currently modified
     modified = {
       icon = "",
       hl = "DiagnosticWarn",
@@ -65,6 +76,7 @@ opts = {
         return vim.fn.getbufvar(bufnr, "&mod") == 1
       end,
     },
+    -- create a group of buffers that currently have diagnostics on a ERROR level
     with_error = {
       icon = "󰈸",
       hl = "DiagnosticError",
@@ -76,8 +88,6 @@ opts = {
   },
 },
 ```
-
-</details>
 
 ## 🏗️ Api
 
