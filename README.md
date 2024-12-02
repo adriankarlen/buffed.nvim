@@ -12,6 +12,9 @@ Code.
 
 ## :movie_camera: Demo
 
+> [!IMPORTANT]
+> This video showcases two filters, modified buffers and buffers with error diagnostics.
+
 https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 
 ## :package: Installation
