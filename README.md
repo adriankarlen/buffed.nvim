@@ -30,7 +30,7 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 }
 ```
 
-### :hammer_and_wrench: Configuration
+### :hammer_and_wrench: Configuration and setup
 
 #### Defaults
 
@@ -39,30 +39,45 @@ https://github.com/user-attachments/assets/bd2109bb-5834-40f7-8029-d38a98db88a6
 ---@field dynamic_tabline boolean: hides tabline when no buffer info available
 ---@field file_icons boolean
 ---@field ignore_current boolean: don't show tabline info for current open buffer
----@field buff Buff
----@field debuff Debuff
-M.options = {
+---@class buffed.filter
+---@field icon string?
+---@field hl string?
+---@field fun function
+---@field filters table<string, buffed.filter>
+{
   dynamic_tabline = true,
   file_icons = true,
   ignore_current = true,
-  ---@class Buff
-  ---@field enabled boolean
-  ---@field icon string
-  buff = {
-    enabled = true,
-    icon = "",
-  },
-  ---@class Debuff
-  ---@field enabled boolean
-  ---@field icon string
-  ---@field severity "ERROR" | "WARN" | "INFO" | "HINT": minimal level required to be marked as debuff
-  debuff = {
-    enabled = true,
-    icon = "󰈸",
-    severity = "ERROR",
-  },
+  filters = {},
 }
 ```
+
+<details>
+<select>Old opinionated defaults converted to new opts structure</select>
+
+```lua
+opts = {
+  filters = {
+    modified = {
+      icon = "",
+      hl = "DiagnosticWarn",
+      fun = function(bufnr)
+        return vim.fn.getbufvar(bufnr, "&mod") == 1
+      end,
+    },
+    with_error = {
+      icon = "󰈸",
+      hl = "DiagnosticError",
+      fun = function(bufnr)
+        local diagnostic = vim.diagnostic.get(bufnr, { severity = { min = "ERROR" } })
+        return #diagnostic > 0
+      end,
+    },
+  },
+},
+```
+
+</details>
 
 ## 🏗️ Api
 
@@ -72,18 +87,27 @@ managing the buffs and debuffs.
 The following two functions can be used to integrate the buffs/debuffs you self.
 
 ```lua
----returns a table of paths to the buffs
-require("buffed").buffs()
 
----returns a table of paths to the debuffs
-require("buffed").debuffs()
+-- buffed options
+{
+  filters = {
+    modified = {
+      name = "modified"
+      icon = "",
+      hl = "DiagnosticWarn",
+      fun = function(bufnr)
+        return vim.fn.getbufvar(bufnr, "&mod") == 1
+      end,
+    },
+  }
+}
 
 -- example usage as a picker using vim.ui.select
 vim.keymap.set("n", "<leader>fb", function()
-  vim.ui.select(require("buffed").buffs(), { prompt = "select buff" }, function(selection)
+  vim.ui.select(require("buffed").get("modified"), { prompt = "select modified" }, function(selection)
     vim.cmd.edit(selection)
   end)
-end, { desc = "pick buffs" })
+end, { desc = "pick modified" })
 ```
 
 ## :telescope: Pickers
@@ -91,41 +115,24 @@ end, { desc = "pick buffs" })
 ### :telescope: Telescope
 
 ```lua
-  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").telescope_buff() end, desc = "telescope - pick buffs")
-  vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").telescope_debuff() end, desc = "telescope - pick debuffs")
+  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").telescope("modified") end, desc = "telescope - pick modified")
 ```
 
 ### :telescope: fzf-lua
 
 ```lua
-  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").fzf_buff() end, desc = "fzf-lua - pick buffs")
-  vim.keymap.set("n", "<leader>fd", function() require("buffed.integrations").fzf_debuff() end, desc = "fzf-lua - pick debuffs")
+  vim.keymap.set("n", "<leader>fb", function() require("buffed.integrations").fzf("modified") end, desc = "fzf-lua - pick modified")
 ```
 
 ## :art: Highlights
 
-<details>
-<summary>Highlight groups</summary>
-
-<!--hl start-->
-
-| Highlight group           | Default           |
-| ------------------------- | ----------------- |
-| **BuffedBuff**            | _DiagnosticWarn_  |
-| **BuffedDebuff**          | _DiagnosticError_ |
-| **BuffedMiniIconsAzure**  | _MiniIconsAzure_  |
-| **BuffedMiniIconsBlue**   | _MiniIconsBlue_   |
-| **BuffedMiniIconsCyan**   | _MiniIconsCyan_   |
-| **BuffedMiniIconsGreen**  | _MiniIconsGreen_  |
-| **BuffedMiniIconsGrey**   | _MiniIconsGrey_   |
-| **BuffedMiniIconsOrange** | _MiniIconsOrange_ |
-| **BuffedMiniIconsPurple** | _MiniIconsPurple_ |
-| **BuffedMiniIconsRed**    | _MiniIconsRed_    |
-| **BuffedMiniIconsYellow** | _MiniIconsYellow_ |
-
-<!-- hl-end -->
-
-> [!NOTE]
-> All highlights use the bg color of TabLine
+The plugin uses the default Tabline highlights, and mainly utilizes the bg color
+of TabLine, when passing a highlight for an icon, the fg color is extracted and
+a new highlight group prefixed with `Buffed` is created that sets the bg color
+the bg color of tabline, this is required due to the way neovim handles bg color
+fallbacks in winbar, statusline and tablines, where it defaults to `Normal`. If
+your tabline bg differs from that, the bg will not match. This issue seems to be
+resolved in a [future release of neovim](https://github.com/neovim/neovim/pull/29976)
+and remove the need for these shenanigans.
 
 </details>
