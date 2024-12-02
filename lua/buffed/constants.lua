@@ -2,48 +2,32 @@
 ---@class buffed.constants
 local M = {}
 
----@class buffed.severity
----@field ERROR integer
----@field WARN integer
----@field INFO integer
----@field HINT integer
-M.severity = {
-  ERROR = vim.diagnostic.severity.ERROR,
-  WARN = vim.diagnostic.severity.WARN,
-  INFO = vim.diagnostic.severity.INFO,
-  HINT = vim.diagnostic.severity.HINT,
-}
-
 ---@class buffed.highlights
 ---@field TabLine string
 ---@field TabLineFill string
 ---@field TabLineSel string
----@field BuffedBuff string
----@field BuffedDebuff string
----@field BuffedMiniIconsAzure string
----@field BuffedMiniIconsBlue string
----@field BuffedMiniIconsCyan string
----@field BuffedMiniIconsGreen string
----@field BuffedMiniIconsGrey string
----@field BuffedMiniIconsOrange string
----@field BuffedMiniIconsPurple string
----@field BuffedMiniIconsRed string
----@field BuffedMiniIconsYellow string
+---@field MiniIconsAzure string
+---@field MiniIconsBlue string
+---@field MiniIconsCyan string
+---@field MiniIconsGreen string
+---@field MiniIconsGrey string
+---@field MiniIconsOrange string
+---@field MiniIconsPurple string
+---@field MiniIconsRed string
+---@field MiniIconsYellow string
 M.highlights = {
   TabLine = "TabLine",
   TabLineFill = "TabLineFill",
   TabLineSel = "TabLineSel",
-  BuffedBuff = "BuffedBuff",
-  BuffedDebuff = "BuffedDebuff",
-  BuffedMiniIconsAzure = "BuffedMiniIconsAzure",
-  BuffedMiniIconsBlue = "BuffedMiniIconsBlue",
-  BuffedMiniIconsCyan = "BuffedMiniIconsCyan",
-  BuffedMiniIconsGreen = "BuffedMiniIconsGreen",
-  BuffedMiniIconsGrey = "BuffedMiniIconsGrey",
-  BuffedMiniIconsOrange = "BuffedMiniIconsOrange",
-  BuffedMiniIconsPurple = "BuffedMiniIconsPurple",
-  BuffedMiniIconsRed = "BuffedMiniIconsRed",
-  BuffedMiniIconsYellow = "BuffedMiniIconsYellow",
+  MiniIconsAzure = "MiniIconsAzure",
+  MiniIconsBlue = "MiniIconsBlue",
+  MiniIconsCyan = "MiniIconsCyan",
+  MiniIconsGreen = "MiniIconsGreen",
+  MiniIconsGrey = "MiniIconsGrey",
+  MiniIconsOrange = "MiniIconsOrange",
+  MiniIconsPurple = "MiniIconsPurple",
+  MiniIconsRed = "MiniIconsRed",
+  MiniIconsYellow = "MiniIconsYellow",
 }
 
 return M

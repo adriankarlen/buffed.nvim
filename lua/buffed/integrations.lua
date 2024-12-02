@@ -2,54 +2,29 @@
 local M = {}
 
 ---opens a fzf-lua picker with buffs
+---@param filter string
 ---@param prompt string?
-M.fzf_buff = function(prompt)
+M.fzf = function(filter, prompt)
   prompt = prompt or "Buffs> "
-  require("fzf-lua").fzf_exec(require("buffed").buffs(), {
+  require("fzf-lua").fzf_exec(require("buffed").get(filter), {
     prompt = prompt,
     actions = {
-      ['default'] = require'fzf-lua'.actions.file_edit,
-    }
-  })
-end
-
----opens a fzf-lua picker with debuffs
----@param prompt string?
-M.fzf_debuff = function(prompt)
-  prompt = prompt or "Debuffs> "
-  require("fzf-lua").fzf_exec(require("buffed").debuffs(), {
-    prompt = prompt,
-    actions = {
-      ['default'] = require'fzf-lua'.actions.file_edit,
-    }
+      ["default"] = require("fzf-lua").actions.file_edit,
+    },
   })
 end
 
 ---opens a telescope picker with buffs
----@param opts table
+---@param filter string
+---@param opts table?
 ---@param prompt string?
-M.telescope_buff = function(opts, prompt)
+M.telescope_buff = function(filter, opts, prompt)
   opts = opts or {}
   prompt = prompt or "Buffs"
   require("telescope.pickers")
     .new(opts, {
       prompt_title = prompt,
-      finder = require("telescope.finders").new_table(require("buffed").buffs()),
-      sorter = require("telescope.config").generic_sorter(opts),
-    })
-    :find()
-end
-
----opens a telescope picker with debuffs
----@param opts table
----@param prompt string?
-M.telescope_debuff = function(opts, prompt)
-  opts = opts or {}
-  prompt = prompt or "Debuffs"
-  require("telescope.pickers")
-    .new(opts, {
-      prompt_title = prompt,
-      finder = require("telescope.finders").new_table(require("buffed").debuffs()),
+      finder = require("telescope.finders").new_table(require("buffed").get(filter)),
       sorter = require("telescope.config").generic_sorter(opts),
     })
     :find()

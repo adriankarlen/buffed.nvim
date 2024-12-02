@@ -1,12 +1,29 @@
-local options = require("buffed.config").options
+local config = require("buffed.config")
 local utils = require "buffed.utils"
-local constants = require "buffed.constants"
 local api = vim.api
 local fn = vim.fn
 
 ---@private
 ---@class buffed.status
 local M = {}
+
+---get all loaded buffers excluding the currenlty open one
+---@return table<number>
+local get_buffers = function()
+  local current_buf = api.nvim_get_current_buf()
+  return vim.tbl_filter(function(bufnr)
+    return api.nvim_buf_is_loaded(bufnr) and (not config.options.ignore_current or bufnr ~= current_buf)
+  end, api.nvim_list_bufs())
+end
+
+---apply a filter to the buffers
+---@param filter_callback function
+---@return table<number>
+local filter = function(filter_callback)
+  return vim.tbl_filter(function(bufnr)
+    return filter_callback(bufnr)
+  end, get_buffers())
+end
 
 ---get a table of buffer file names by their ids
 ---@param buffers table<number>
@@ -24,47 +41,10 @@ local named_buffers = function(buffers)
   return named
 end
 
-local get_buffers = function()
-  local current_buf = api.nvim_get_current_buf()
-  return vim.tbl_filter(function(bufnr)
-    return api.nvim_buf_is_loaded(bufnr) and (not options.ignore_current or bufnr ~= current_buf)
-  end, api.nvim_list_bufs())
-end
-
----returns table of buffer id's that is modified
----@return table<number>
-local buffs = function()
-  local buffs = {}
-  for _, i in pairs(get_buffers()) do
-    if fn.getbufvar(i, "&mod") == 1 then
-      table.insert(buffs, i)
-    end
-  end
-  return buffs
-end
-
----returns table of buffer id's that are open and has diagnostic of configured level
----@return table<number>
-local debuffs = function()
-  local debuffs = {}
-  for _, i in pairs(get_buffers()) do
-    local diagnostic = vim.diagnostic.get(i, { severity = { min = constants.severity[options.debuff.severity] } })
-    if #diagnostic > 0 then
-      table.insert(debuffs, i)
-    end
-  end
-  return debuffs
-end
-
----get buffer names for either debuffs or buffs
----@param type "buff" | "debuff"
+---get buffer names for specified filter callback
+---@param callback function
 ---@return table<string>
-M.named = function(type)
-  if type == "buff" then
-    return named_buffers(buffs())
-  elseif type == "debuff" then
-    return named_buffers(debuffs())
-  end
-  return {}
+M.named = function(callback)
+    return named_buffers(filter(callback))
 end
 return M

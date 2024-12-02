@@ -7,16 +7,15 @@ local opt = vim.opt
 ---@class buffed
 local M = {}
 
----get file names for all buffs
----@return table<string>
-M.buffs = function()
-  return status.named "buff"
-end
 
----get file names for all debuffs
----@return table<string>
-M.debuffs = function()
-  return status.named "debuff"
+---get files of named filter
+---@return table<string>?
+M.get = function(name)
+  local filter = config.options.filters[name]
+  if filter then
+    return status.named(filter.fun)
+  end
+  return nil
 end
 
 ---@param opts buffed.options
@@ -25,7 +24,13 @@ M.setup = function(opts)
     require "buffed.autocmds"
   end
   config.extend_options(opts)
-  highlights.create_hl_groups()
+
+  local user_defined_hls = {}
+  for _, filter in pairs(config.options.filters) do
+    table.insert(user_defined_hls, filter.hl)
+  end
+
+  highlights.create_hl_groups(user_defined_hls)
   opt.showtabline = 2
   opt.tabline = "%!v:lua.require'buffed.tabline'.show()"
 end
